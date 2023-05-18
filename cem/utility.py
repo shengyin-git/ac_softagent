@@ -97,7 +97,7 @@ def get_cloth_key_point_idx(parser):
     cs.generate_final_mesh(goal_pos)
     cs.smp_the_mesh()
     key_points = cs.get_key_point()
-    # cs.plot_simplified_mesh()
+    cs.plot_simplified_mesh()
 
     return key_points
 

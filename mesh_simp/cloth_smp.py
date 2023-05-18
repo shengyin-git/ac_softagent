@@ -124,12 +124,12 @@ class mesh_smp(object):
         ori_m = self.ms.mesh(1)
         ori_vertices = ori_m.vertex_matrix()
         ori_triangles = ori_m.face_matrix()
-
-        ax.scatter(ori_vertices[:,0], ori_vertices[:,2], ori_vertices[:,1],marker = 'o', c='y', s=50, alpha = 0.2, label = 'Original mesh') #, label='original point position'
-        ax.scatter(ori_vertices[self.key_point_index,0], ori_vertices[self.key_point_index,2], ori_vertices[self.key_point_index,1], marker = '<', s = 2000, c='b', label='Extracted key points')
+        #EE82EE
+        ax.scatter(ori_vertices[:,0], ori_vertices[:,2], ori_vertices[:,1],marker = 'o', c='#FF82AB', s=10, alpha = 0.4, label = 'Original mesh') #, label='original point position'
+        # ax.scatter(ori_vertices[self.key_point_index,0], ori_vertices[self.key_point_index,2], ori_vertices[self.key_point_index,1], marker = '<', s = 2000, c='b', label='Extracted key points')
 
         ori_vertices = self.flatten_ini_pos
-        ax.scatter(ori_vertices[:,0], ori_vertices[:,2], ori_vertices[:,1],marker = '<', c='r', s=50, alpha = 0.2, label = 'Original mesh') #, label='original point position'
+        # ax.scatter(ori_vertices[:,0], ori_vertices[:,2], ori_vertices[:,1],marker = '<', c='r', s=50, alpha = 0.2, label = 'Original mesh') #, label='original point position'
 
         simp_m = self.ms.mesh(self.best_simplification)
         simp_vertices = simp_m.vertex_matrix()
@@ -158,11 +158,13 @@ class mesh_smp(object):
             x_1 = simp_vertices[index_1, 0]
             y_1 = simp_vertices[index_1, 2]
             z_1 = simp_vertices[index_1, 1]
-
-            ax.plot(x_1, y_1, z_1, color = 'k', linestyle='--', linewidth = 5, markersize = 30, marker = 'o')
-            ax.plot_trisurf(x_0, y_0, z_0, color = '#00FFFF', alpha = 0.5) 
+            #00FFFF
+            ax.plot(x_1, y_1, z_1, color = '#00F5FF', linestyle='--', linewidth = 5, markersize = 30, marker = 'o')
+            ax.plot_trisurf(x_0, y_0, z_0, color = '#00F5FF', alpha = 0.5) 
 
         ax.axis('off')
+
+        ax.set_zlim3d(0,0.15)
         plt.show()
 
 def main():

@@ -8,7 +8,7 @@ from copy import deepcopy
 
 
 class RopeNewEnv(FlexEnv):
-    def __init__(self, observation_mode, action_mode, num_picker=1, horizon=75, render_mode='particle', picker_radius=0.02, **kwargs):
+    def __init__(self, observation_mode, action_mode, num_picker=1, horizon=75, render_mode='particle', picker_radius=0.05, **kwargs):
         self.render_mode = render_mode
         super().__init__(**kwargs)
 

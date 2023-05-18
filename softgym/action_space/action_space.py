@@ -100,7 +100,6 @@ class Picker(ActionToolBase):
         if key_point_index is None:
             self.num_particles = len(self.particle_inv_mass)
             self.key_point_index = np.linspace(0, self.num_particles-1, self.num_particles)
-            # self.key_point_index = np.linspace(0,len(self.particle_inv_mass),len(self.particle_inv_mass))
         else:
             self.key_point_index = key_point_index
         self.num_key_points = len(self.key_point_index)
@@ -155,10 +154,10 @@ class Picker(ActionToolBase):
        
             picking_index = np.floor(self.f_interp(action[i,3]))
             
-            if picking_index >= self.none_threshold:  #math.isnan(action[i,3]):
+            if picking_index >= self.none_threshold:  
                 self.picked_particles[i] = None
             else:                       
-                picked_particle = np.int32(self.key_point_index[np.int32(picking_index)]) #self.key_point_index[np.int32(np.round(self.f_interp(action[i,3])))]#int(action[i,3]) #
+                picked_particle = np.int32(self.key_point_index[np.int32(picking_index)]) 
                 # if self.picked_particles[i] != picked_particle:
                 #     pyflex.set_positions(new_particle_pos)
                 #     stable_vel_threshold = 0.3
@@ -209,7 +208,6 @@ class Picker(ActionToolBase):
 
         self._set_pos(new_picker_pos, new_particle_pos)
         # self._set_pos(picker_pos_, new_particle_pos)
-
 
 class PickerPickPlace(Picker):
     def __init__(self, num_picker, env=None, picker_low=None, picker_high=None, **kwargs):
@@ -275,9 +273,7 @@ class PickerPickPlace(Picker):
                 break
         return model_actions, curr_pos
 
-
 from softgym.utils.gemo_utils import intrinsic_from_fov, get_rotation_matrix
-
 
 class PickerQPG(PickerPickPlace):
     def __init__(self, image_size, cam_pos, cam_angle, full=True, **kwargs):
