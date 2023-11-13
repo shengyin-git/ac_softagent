@@ -45,14 +45,10 @@ class mesh_smp(object):
         for i in range(num_sample):
             target_num_triangle = simp_set[i]
             tmp_str = 'simplified mesh '+str(num_end - i)
-            if i == 0:
-                m = self.ms.mesh(1)
-                self.ms.add_mesh(m, tmp_str)
-                self.ms.simplification_quadric_edge_collapse_decimation(targetfacenum = target_num_triangle, planarquadric = True, planarweight = 0.00001)
-            else:
-                m = self.ms.mesh(1+i)
-                self.ms.add_mesh(m, tmp_str)
-                self.ms.simplification_quadric_edge_collapse_decimation(targetfacenum = target_num_triangle, planarquadric = True, planarweight = 0.00001)
+
+            m = self.ms.mesh(1+i)
+            self.ms.add_mesh(m, tmp_str)
+            self.ms.simplification_quadric_edge_collapse_decimation(targetfacenum = target_num_triangle, planarquadric = True, planarweight = 0.00001)
 
         # get rhe best simplification
         num_meshes = self.ms.number_meshes()

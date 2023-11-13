@@ -25,6 +25,26 @@ cem_plan_horizon = {
     'RopeConfiguration': 20
 }
 
+def show_picture(row, col, r, g, b, save_path=None):
+    image = Image.new("RGB", (row, col))
+    
+    counter = 0
+    
+    for i in range(0, row):
+        for j in range(0, col):
+            image.putpixel((j, i), (r[counter], g[counter], b[counter]))
+            counter = counter + 1
+    image.show()
+
+    if save_path is None:
+        image.show()
+    else:
+        if os.path.exists(save_path):
+            image.save(save_path+ str(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime())) + '.png')
+        else:
+            os.makedirs(save_path, exist_ok=True)
+            image.save(save_path+ str(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime())) + '.png')
+
 def get_rope_key_point_idx(parser):
     args = parser.parse_args()
     vv = args.__dict__
@@ -81,8 +101,13 @@ def get_cloth_key_point_idx(parser):
     
     env = env_class(**env_kwargs)
     env.reset()
-    goal_img, flat_pos = env._get_flat_state(camera_height=720, camera_width=720)
+    ini_img, flat_pos = env._get_flat_state(camera_height=720, camera_width=720)
     goal_img, goal_pos = env._get_goal_state(camera_height=720, camera_width=720)
+
+    show_picture(720, 720, ini_img[:,:,0].flatten(), ini_img[:,:,1].flatten(), ini_img[:,:,2].flatten(), save_path = None)
+    input()
+    show_picture(720, 720, goal_img[:,:,0].flatten(), goal_img[:,:,1].flatten(), goal_img[:,:,2].flatten(), save_path = None)  
+    input()
 
     # ini_pos_path = osp.join(current_path,'data/simp_model/particle_pos_ini.npy')
     # flat_pos = np.load(ini_pos_path)

@@ -156,7 +156,7 @@ def main():
     
     parser.add_argument('--env_kwargs_horizon', default=15, type=int)
     parser.add_argument('--env_kwargs_action_repeat', default=8, type=int) 
-    # parser.add_argument('--env_kwargs_headless', default=0, type=int)
+    parser.add_argument('--env_kwargs_headless', default=1, type=int)
     parser.add_argument('--env_kwargs_use_cached_states', default=True, type=bool)
     parser.add_argument('--env_kwargs_save_cached_states', default=False, type=bool)
 
